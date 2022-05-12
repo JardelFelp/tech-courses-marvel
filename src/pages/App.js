@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react'
 
-import Button from './components/Button'
+import { useNavigate } from 'react-router-dom'
+
+import Button from '../components/Button'
 
 function App() {
   const [count, setCount] = useState(0)
+  const navigate = useNavigate()
 
   useEffect(function() {
     console.log('Atualizou Count. Novo valor: ', count)
@@ -25,6 +28,10 @@ function App() {
     setCount(count - 1)
   }
 
+  function openToDo() {
+    navigate('/to-do')
+  }
+
   return (
     <div>
       <h1>My first page :D</h1>
@@ -32,6 +39,9 @@ function App() {
       <Button onClick={ decrement }>Decrement</Button>
       <span> { count } </span>
       <Button onClick={ increment }>Increment</Button>
+
+      <hr />
+      <Button onClick={ openToDo }>Open ToDo</Button>
     </div>
   )
 }
