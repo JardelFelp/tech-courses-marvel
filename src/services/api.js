@@ -1,8 +1,8 @@
 import axios from 'axios'
 import CryptoJs from 'crypto-js'
 
-const publicKey = '5cb12b1a3835f9e0327000e205df90ec'
-const privateKey = 'a66a287bac8b7a6749830ee33ce3a4a2ce9d9ed0'
+const publicKey = process.env.REACT_APP_PUBLIC_KEY
+const privateKey = process.env.REACT_APP_PRIVATE_KEY
 
 const timestamp = new Date().getTime()
 
@@ -28,6 +28,7 @@ const api = axios.create({
  */
 api.interceptors.request.use(request => {
   request.params = {
+    ...request.params,
     ts: timestamp,
     apikey: publicKey,
     hash: hash,
